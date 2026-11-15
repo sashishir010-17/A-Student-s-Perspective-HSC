@@ -1,0 +1,813 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beyond the Grades | HSC Bangladesh</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+:root {
+  --cyan: #38bdf8;
+  --purple: #a78bfa;
+  --pink: #fb7185;
+  --bg: #0b1020;
+  --card: #151e32;
+  --muted: #a5b4c8;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: var(--bg);
+  color: #f1f5f9;
+  line-height: 1.7;
+}
+
+header {
+  padding: 20px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #10192c;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  color: var(--cyan);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  margin-left: 15px;
+  font-size: 13px;
+}
+
+nav a:hover { color: var(--cyan); }
+
+.hero {
+  min-height: 580px;
+  display: flex;
+  align-items: center;
+  padding: 90px 8%;
+  background: linear-gradient(120deg,#0b1020,#183b59,#30265b);
+}
+
+.hero-content { max-width: 800px; }
+
+.tag {
+  color: var(--cyan);
+  letter-spacing: 3px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.hero h1 {
+  font-size: clamp(40px,7vw,75px);
+  line-height: 1.15;
+  margin: 22px 0;
+}
+
+.hero h1 span { color: var(--cyan); }
+
+.hero p {
+  max-width: 650px;
+  color: #d1dbe8;
+  font-size: 17px;
+}
+
+button {
+  padding: 13px 24px;
+  background: var(--cyan);
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 25px;
+}
+
+section { padding: 75px 8%; }
+
+.dark-section { background: #10192c; }
+
+.title {
+  font-size: 34px;
+  margin-bottom: 10px;
+}
+
+.highlight { color: var(--cyan); }
+
+.subtitle {
+  color: var(--muted);
+  margin-bottom: 32px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns:
+  repeat(auto-fit,minmax(220px,1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid #293850;
+  padding: 25px;
+  border-radius: 13px;
+  transition: .3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: var(--cyan);
+}
+
+.emoji { font-size: 32px; }
+
+.card h3 {
+  color: var(--cyan);
+  margin: 12px 0;
+}
+
+.card p { color: var(--muted); font-size: 14px; }
+
+.table-wrap {
+  overflow-x: auto;
+  border-radius: 12px;
+}
+
+table {
+  width: 100%;
+  min-width: 650px;
+  border-collapse: collapse;
+  background: var(--card);
+}
+
+th,td {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid #293850;
+}
+
+th {
+  background: #1c304b;
+  color: var(--cyan);
+}
+
+td { color: #d5deeb; }
+
+tr:hover { background: #1d2b42; }
+
+.impact {
+  display: grid;
+  grid-template-columns:
+  repeat(auto-fit,minmax(210px,1fr));
+  gap: 18px;
+}
+
+.impact-box {
+  background: var(--card);
+  padding: 22px;
+  border-left: 4px solid var(--pink);
+  border-radius: 8px;
+}
+
+.impact-box h3 {
+  color: var(--pink);
+  margin-bottom: 8px;
+}
+
+.quote {
+  text-align: center;
+  padding: 65px 10%;
+  background: linear-gradient(120deg,#183b59,#30265b);
+}
+
+.quote h2 {
+  font-size: clamp(23px,4vw,36px);
+}
+
+.quote p { color: #cbd5e1; margin-top: 15px; }
+
+.steps {
+  display: grid;
+  grid-template-columns:
+  repeat(auto-fit,minmax(230px,1fr));
+  gap: 20px;
+}
+
+.step {
+  background: var(--card);
+  padding: 24px;
+  border-radius: 12px;
+  border-top: 3px solid var(--purple);
+}
+
+.step h3 {
+  color: var(--purple);
+  margin-bottom: 12px;
+}
+
+.check-area {
+  background: #17243a;
+  padding: 28px;
+  border-radius: 14px;
+  max-width: 750px;
+}
+
+.check-area label {
+  display: block;
+  padding: 9px 0;
+}
+
+.check-area input {
+  margin-right: 10px;
+  accent-color: var(--cyan);
+}
+
+#result {
+  color: var(--cyan);
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.note {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 15px;
+}
+
+footer {
+  text-align: center;
+  padding: 35px;
+  background: #080d18;
+  color: var(--muted);
+}
+
+footer strong { color: var(--cyan); }
+
+@media(max-width:650px) {
+  header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  nav a {
+    margin: 0 5px;
+    font-size: 11px;
+  }
+
+  section { padding: 55px 6%; }
+  .hero { padding: 75px 6%; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">BEYOND THE GRADES</div>
+  <nav>
+    <a href="#reality">Reality</a>
+    <a href="#problems">Problems</a>
+    <a href="#impact">Impact</a>
+    <a href="#solutions">Solutions</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+
+<div class="hero">
+  <div class="hero-content">
+    <div class="tag">BANGLADESH • HSC STUDENT AWARENESS</div>
+
+    <h1>
+      BEYOND<br>
+      <span>THE GRADES.</span>
+    </h1>
+
+    <p>
+      Two years of expectations, endless chapters,
+      financial limitations, academic pressure and
+      invisible struggles.
+
+      What happens behind the examination papers?
+      Discover the untold reality of Bangladeshi HSC students.
+    </p>
+
+    <button onclick="document.getElementById('reality')
+    .scrollIntoView({behavior:'smooth'})">
+      EXPLORE THE REALITY ↓
+    </button>
+  </div>
+</div>
+
+<!-- INTRODUCTION -->
+
+<section id="reality">
+  <h2 class="title">The <span class="highlight">HSC Reality</span></h2>
+
+  <p class="subtitle">
+    HSC is not just an examination. It is a journey
+    involving academic, financial, social and emotional challenges.
+  </p>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="emoji">📚</div>
+      <h3>Academic Pressure</h3>
+      <p>Numerous chapters, practical work, assignments
+      and continuous examination preparation.</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🏫</div>
+      <h3>Irregular Classes</h3>
+      <p>Missed lectures, disrupted schedules and
+      insufficient classroom guidance create learning gaps.</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">📖</div>
+      <h3>Extra Syllabus</h3>
+      <p>Large syllabuses, unfinished chapters and
+      limited preparation time increase academic pressure.</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">📱</div>
+      <h3>Digital Distractions</h3>
+      <p>Social media, gaming, notifications and excessive
+      screen time interrupt concentration.</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🎓</div>
+      <h3>Coaching Pressure</h3>
+      <p>Multiple coaching sessions, private tuition and
+      frequent tests leave less time for self-study.</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">👨‍👩‍👦</div>
+      <h3>Family Expectations</h3>
+      <p>Pressure to achieve excellent GPA and
+      comparisons with other students can affect confidence.</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">💰</div>
+      <h3>Financial Difficulties</h3>
+      <p>Insufficient money for books, coaching fees,
+      private tuition, transportation, internet and
+      other essential educational expenses.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROBLEMS TABLE -->
+
+<section class="dark-section" id="problems">
+  <h2 class="title">What's <span class="highlight">Going Wrong?</span></h2>
+
+  <p class="subtitle">
+    The major problems, their possible causes and
+    consequences for HSC students.
+  </p>
+
+  <div class="table-wrap">
+    <table>
+      <tr>
+        <th>Problems</th>
+        <th>Possible Causes</th>
+        <th>Possible Consequences</th>
+      </tr>
+
+      <tr>
+        <td>Academic Pressure</td>
+        <td>Large syllabus and continuous exams</td>
+        <td>Stress and examination anxiety</td>
+      </tr>
+
+      <tr>
+        <td>Irregular Classes</td>
+        <td>Missed lectures and disrupted schedules</td>
+        <td>Learning gaps and weak concepts</td>
+      </tr>
+
+      <tr>
+        <td>Extra Syllabus</td>
+        <td>Limited teaching time and delayed schedules</td>
+        <td>Incomplete preparation and rushed learning</td>
+      </tr>
+
+      <tr>
+        <td>Digital Distractions</td>
+        <td>Social media and excessive screen time</td>
+        <td>Reduced concentration and time management</td>
+      </tr>
+
+      <tr>
+        <td>Coaching Pressure</td>
+        <td>Multiple tuition sessions and frequent tests</td>
+        <td>Less time for rest and self-study</td>
+      </tr>
+
+      <tr>
+        <td>Family Expectations</td>
+        <td>Comparisons and unrealistic expectations</td>
+        <td>Fear of failure and reduced confidence</td>
+      </tr>
+
+      <tr>
+        <td>Financial Difficulties</td>
+        <td>Limited family income and high educational expenses</td>
+        <td>Difficulty accessing resources and unequal learning opportunities</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- FINANCIAL IMPACT -->
+
+<section>
+  <h2 class="title">
+    The <span class="highlight">Financial Barrier</span>
+  </h2>
+
+  <p class="subtitle">
+    Education requires resources. But not every student
+    has equal access to them.
+  </p>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="emoji">📕</div>
+      <h3>Books & Materials</h3>
+      <p>Difficulty purchasing textbooks, reference books,
+      guides, notebooks and practical materials.</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🏫</div>
+      <h3>Coaching Fees</h3>
+      <p>Not every family can afford multiple coaching
+      centres or private tutors.</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🚌</div>
+      <h3>Transportation</h3>
+      <p>Daily travel expenses can become an additional
+      burden for students attending distant colleges.</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">💻</div>
+      <h3>Technology Access</h3>
+      <p>Limited access to smartphones, computers,
+      stable internet and online learning resources.</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">⚖️</div>
+      <h3>Unequal Opportunities</h3>
+      <p>Financial limitations can create differences
+      in access to educational opportunities.</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🧠</div>
+      <h3>Financial Stress</h3>
+      <p>Worrying about educational expenses can add
+      another layer of emotional pressure.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPECTATION VS REALITY -->
+
+<section class="dark-section">
+  <h2 class="title">
+    Expectation <span class="highlight">vs Reality</span>
+  </h2>
+
+  <p class="subtitle">
+    What students expect and what some students experience.
+  </p>
+
+  <div class="table-wrap">
+    <table>
+      <tr>
+        <th>Expectation</th>
+        <th>Reality</th>
+      </tr>
+
+      <tr>
+        <td>I'll finish every chapter on time.</td>
+        <td>Some chapters remain unfinished.</td>
+      </tr>
+
+      <tr>
+        <td>College classes will cover everything.</td>
+        <td>Some topics require additional support.</td>
+      </tr>
+
+      <tr>
+        <td>I'll study consistently every day.</td>
+        <td>Distractions can interrupt the routine.</td>
+      </tr>
+
+      <tr>
+        <td>I'll have access to every learning resource.</td>
+        <td>Financial limitations can restrict access.</td>
+      </tr>
+
+      <tr>
+        <td>Two years will be enough.</td>
+        <td>Unexpected academic delays can create pressure.</td>
+      </tr>
+
+      <tr>
+        <td>Only results matter.</td>
+        <td>Student well-being matters just as much.</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- MENTAL HEALTH -->
+
+<section id="impact">
+  <h2 class="title">
+    The Hidden <span class="highlight">Mental Impact</span>
+  </h2>
+
+  <p class="subtitle">
+    Continuous academic and financial challenges
+    may affect students' emotional well-being.
+  </p>
+
+  <div class="impact">
+
+    <div class="impact-box">
+      <h3>😟 Anxiety</h3>
+      <p>Constant worry about examinations,
+      financial circumstances and future opportunities.</p>
+    </div>
+
+    <div class="impact-box">
+      <h3>😔 Low Motivation</h3>
+      <p>Difficulty maintaining a study routine
+      and starting academic tasks.</p>
+    </div>
+
+    <div class="impact-box">
+      <h3>🌧 Emotional Exhaustion</h3>
+      <p>Feeling overwhelmed by continuous demands
+      and insufficient rest.</p>
+    </div>
+
+    <div class="impact-box">
+      <h3>💭 Financial Worry</h3>
+      <p>Feeling concerned about the cost of
+      books, tuition and educational resources.</p>
+    </div>
+
+    <div class="impact-box">
+      <h3>🧩 Isolation</h3>
+      <p>Feeling misunderstood or unable to
+      discuss personal struggles.</p>
+    </div>
+
+    <div class="impact-box">
+      <h3>📉 Low Confidence</h3>
+      <p>Losing confidence after repeated
+      academic or financial difficulties.</p>
+    </div>
+
+  </div>
+
+  <p class="note">
+    Academic and financial pressure may contribute to distress,
+    but depression has multiple possible causes.
+    Persistent symptoms deserve support and professional assessment.
+  </p>
+</section>
+
+<!-- QUOTE -->
+
+<div class="quote">
+  <h2>
+    "A student's worth cannot be measured
+    by GPA, financial status or examination results."
+  </h2>
+  <p>Every student deserves an equal opportunity to learn and grow.</p>
+</div>
+
+<!-- SOLUTIONS -->
+
+<section id="solutions">
+  <h2 class="title">
+    From <span class="highlight">Struggle to Solutions</span>
+  </h2>
+
+  <p class="subtitle">
+    Creating a better HSC experience requires collective responsibility.
+  </p>
+
+  <div class="steps">
+
+    <div class="step">
+      <h3>01. Students</h3>
+      <p>
+        • Create a realistic study routine.<br>
+        • Break large chapters into smaller tasks.<br>
+        • Reduce unnecessary screen time.<br>
+        • Use free educational resources.<br>
+        • Seek help when necessary.
+      </p>
+    </div>
+
+    <div class="step">
+      <h3>02. Teachers</h3>
+      <p>
+        • Maintain regular classes.<br>
+        • Explain difficult topics clearly.<br>
+        • Provide structured syllabus plans.<br>
+        • Support students with learning gaps.<br>
+        • Encourage open communication.
+      </p>
+    </div>
+
+    <div class="step">
+      <h3>03. Parents</h3>
+      <p>
+        • Avoid unnecessary comparisons.<br>
+        • Understand financial limitations.<br>
+        • Appreciate effort, not only grades.<br>
+        • Listen without judgment.<br>
+        • Provide emotional support.
+      </p>
+    </div>
+
+    <div class="step">
+      <h3>04. Educational Institutions</h3>
+      <p>
+        • Ensure consistent academic schedules.<br>
+        • Arrange syllabus support sessions.<br>
+        • Improve counselling facilities.<br>
+        • Provide affordable learning resources.<br>
+        • Introduce financial assistance where possible.
+      </p>
+    </div>
+
+    <div class="step">
+      <h3>05. Society & Government</h3>
+      <p>
+        • Expand educational scholarships.<br>
+        • Support financially disadvantaged students.<br>
+        • Improve affordable digital access.<br>
+        • Encourage mental health awareness.<br>
+        • Promote equal educational opportunities.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- STUDENT CHECK-IN -->
+
+<section class="dark-section">
+  <h2 class="title">
+    A Moment to <span class="highlight">Check In</span>
+  </h2>
+
+  <p class="subtitle">
+    Take a moment to reflect on the challenges
+    you may be experiencing.
+  </p>
+
+  <div class="check-area">
+    <h3>Have you experienced any of these recently?</h3>
+
+    <label><input type="checkbox" class="stress">
+    Difficulty concentrating on studies</label>
+
+    <label><input type="checkbox" class="stress">
+    Feeling overwhelmed by academic pressure</label>
+
+    <label><input type="checkbox" class="stress">
+    Financial difficulties affecting education</label>
+
+    <label><input type="checkbox" class="stress">
+    Worrying about unfinished syllabus</label>
+
+    <label><input type="checkbox" class="stress">
+    Feeling emotionally exhausted</label>
+
+    <label><input type="checkbox" class="stress">
+    Struggling with digital distractions</label>
+
+    <button onclick="checkStress()">SUBMIT CHECK-IN</button>
+
+    <div id="result"></div>
+
+    <p class="note">
+      This is an awareness activity, not a depression
+      screening test or medical diagnosis. Your answers
+      are not stored or transmitted. If these difficulties
+      persist, consider speaking with a trusted adult,
+      teacher, counsellor or healthcare professional.
+    </p>
+  </div>
+</section>
+
+<!-- CONCLUSION -->
+
+<section>
+  <h2 class="title">
+    Beyond Grades, <span class="highlight">Beyond Barriers.</span>
+  </h2>
+
+  <div class="card">
+    <h3>Our Final Message</h3>
+
+    <p>
+      HSC students need more than textbooks, examinations
+      and expectations. They need proper academic guidance,
+      financial support, equal opportunities and a healthy
+      learning environment.
+    </p>
+
+    <br>
+
+    <p>
+      A successful education system does not simply produce
+      excellent results. It creates confident, capable and
+      mentally healthy individuals.
+    </p>
+
+    <br>
+
+    <h3>Let's make education a journey of opportunity,
+    not a source of endless pressure.</h3>
+  </div>
+</section>
+
+<footer>
+  <strong>BEYOND THE GRADES</strong>
+  <p>Every Student Has a Story Beyond Their Results.</p>
+  <p>Bangladesh • HSC Student Awareness Project</p>
+  <p style="margin-top:15px;font-size:12px;">
+    Education matters. Financial equality matters.
+    Mental well-being matters.
+  </p>
+</footer>
+
+<script>
+function checkStress() {
+
+  const checks = document.querySelectorAll(".stress");
+  let count = 0;
+
+  checks.forEach(item => {
+    if(item.checked) count++;
+  });
+
+  const result = document.getElementById("result");
+
+  if(count === 0) {
+    result.innerHTML =
+    "Take a moment to reflect on your current experiences.";
+  }
+
+  else if(count <= 2) {
+    result.innerHTML =
+    "You have identified some challenges. Small changes and support can help.";
+  }
+
+  else {
+    result.innerHTML =
+    "You have identified several challenges. Consider sharing your concerns with someone you trust and seeking support.";
+  }
+}
+</script>
+
+</body>
+</html>
